@@ -7,8 +7,7 @@ from selenium.webdriver.chrome.options import Options
 
 def fetchLatestVersionDetails():
     options = Options()
-    options.add_argument('--headless')
-    options.add_argument('--disable-gpu')
+    options.headless = True
     driver = webdriver.Chrome("./chromedriver/chromedriver.exe", chrome_options=options)
 
     driver.get("https://rog.asus.com/ca-en/phones/rog-phone-5-model/helpdesk_bios")
