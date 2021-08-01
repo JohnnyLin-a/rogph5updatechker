@@ -3,9 +3,13 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException
+from selenium.webdriver.chrome.options import Options
 
 def fetchLatestVersionDetails():
-    driver = webdriver.Chrome("./chromedriver/chromedriver.exe")
+    options = Options()
+    options.add_argument('--headless')
+    options.add_argument('--disable-gpu')
+    driver = webdriver.Chrome("./chromedriver/chromedriver.exe", chrome_options=options)
 
     driver.get("https://rog.asus.com/ca-en/phones/rog-phone-5-model/helpdesk_bios")
     
