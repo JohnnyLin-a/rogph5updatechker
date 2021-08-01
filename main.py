@@ -3,12 +3,12 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException
-from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.firefox.options import Options
 
 def fetchLatestVersionDetails():
     options = Options()
     options.headless = True
-    driver = webdriver.Chrome("./chromedriver/chromedriver.exe", chrome_options=options)
+    driver = webdriver.Firefox(options=options, executable_path="/usr/bin/geckodriver")
 
     driver.get("https://rog.asus.com/ca-en/phones/rog-phone-5-model/helpdesk_bios")
     
