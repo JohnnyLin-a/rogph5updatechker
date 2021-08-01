@@ -21,4 +21,4 @@ RUN apt-get update && \
 
 COPY ./requirements.txt /root/requirements.txt
 
-RUN pip3 install -r /root/requirements.txt
+RUN pip3 install wheel setuptools && pip3 install -r /root/requirements.txt
