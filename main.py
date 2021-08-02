@@ -72,6 +72,8 @@ different = False
 if storedVersion[0] != versionDetails[0] and storedVersion[1] != versionDetails[1] and versionDetails[0].lower().startswith("version ww"):
     print("New version detected")
     different = True
+else:
+    print("Did not find new version")
 
 # Check compare results, then notify if needed
 if different:
