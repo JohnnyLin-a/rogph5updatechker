@@ -75,7 +75,8 @@ else:
     print("Did not find new version")
 
 # Check compare results, then notify if needed
-if different:
+forceNotify = True
+if different or forceNotify:
     print("Notifying discord...")
     success = notifyDiscord(versionDetails)
     if success:
