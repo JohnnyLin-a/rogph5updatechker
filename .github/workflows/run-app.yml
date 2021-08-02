@@ -36,9 +36,8 @@ jobs:
       -
         name: Execute app
         run : |
-          docker build --no-cache --pull -t workflow:latest -f ./Dockerfile.workflow .
-          docker run --rm -e DISCORD_USERID=$DISCORD_USERID -e DISCORD_WEBHOOK_URL=$DISCORD_WEBHOOK_URL workflow:latest "/root/src/run-app.sh"
-          docker image rm -f workflow:latest
+          pip3 install -r requirements.txt
+          python3 main.py
       -
         name: Move version.json to cache directory
         run: |
