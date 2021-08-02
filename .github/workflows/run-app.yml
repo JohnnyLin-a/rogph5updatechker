@@ -30,8 +30,9 @@ jobs:
             ${{ runner.os }}-rogph5updatechker-
       -
         name: Move cache to repo directory
+        continue-on-error: true
         run: |
-          cp /tmp/.app-cache/* ./
+          cp /tmp/.app-cache/version.json ./
       -
         name: Execute app
         run : |
