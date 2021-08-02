@@ -1,0 +1,45 @@
+name: run-app
+
+on:
+  schedule:
+    - cron: '0 12 * * *'
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      DISCORD_USERID: ${{ secrets.DISCORD_USERID }}
+      DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+    steps:
+      - 
+        name: Checkout repository
+        uses: actions/checkout@v2
+        with:
+          ref: master
+      -
+        name: Cache version.json
+        uses: actions/cache@v2
+        with:
+          path: /tmp/.app-cache
+          key: ${{ runner.os }}-rogph5updatechker-${{ github.sha }}
+          restore-keys: |
+            ${{ runner.os }}-rogph5updatechker-
+      -
+        name: Move cache to repo directory
+        run: |
+          if [ -e /tmp/.app-cache/version.json ] then cp /tmp/.app-cache/version.json ./ fi
+      -
+        name: Execute app
+        run : |
+          docker build --no-cache --pull -t workflow:latest -f ./Dockerfile.workflow .
+          docker run --rm -v $(pwd):/root/src -e DISCORD_USERID=$DISCORD_USERID -e DISCORD_WEBHOOK_URL=$DISCORD_WEBHOOK_URL workflow:latest "python3 ./main.py"
+          docker image rm -f workflow:latest
+      -
+        name: Move version.json to cache directory
+        run: |
+          cp ./version.json /tmp/.app-cache/
+          rm version.json
