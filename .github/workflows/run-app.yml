@@ -31,7 +31,7 @@ jobs:
       -
         name: Move cache to repo directory
         run: |
-          cp /tmp/.app-cache/version.json 2>/dev/null ./ ; return 0 ;
+          cp /tmp/.app-cache/* ./
       -
         name: Execute app
         run : |
