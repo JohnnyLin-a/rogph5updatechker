@@ -41,5 +41,5 @@ jobs:
       -
         name: Move version.json to cache directory
         run: |
-          cp ./version.json /tmp/.app-cache/
+          mkdir -p /tmp/.app-cache/ && cp ./version.json /tmp/.app-cache/
           rm version.json
