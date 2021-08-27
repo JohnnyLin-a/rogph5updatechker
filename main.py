@@ -38,9 +38,9 @@ def notifyDiscord(versionDetails):
     postReq = requests.post(webhook_url, {'content': "<@" + user_id + "> New update available: " + versionDetails[0] + " " + versionDetails[1]})
     if postReq.status_code >= 200 and postReq.status_code < 300:
         success = True
-        print("Successfully notified on discord with status code: " + postReq.status_code)
+        print("Successfully notified on discord with status code: " + str(postReq.status_code))
     else:
-        print("Failed to notify discord with status code: " + postReq.status_code)
+        print("Failed to notify discord with status code: " +  str(postReq.status_code))
     return success
 
 
