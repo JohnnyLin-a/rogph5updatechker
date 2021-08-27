@@ -9,7 +9,7 @@ on:
     branches: [ master ]
 
 jobs:
-  build:
+  run-app:
     runs-on: ubuntu-latest
     env:
       DISCORD_USERID: ${{ secrets.DISCORD_USERID }}
@@ -34,9 +34,12 @@ jobs:
         run: |
           cp /tmp/.app-cache/version.json ./
       -
-        name: Execute app
+        name: Install pre-requisites
         run : |
           pip3 install -r requirements.txt
+      -
+        name: Execute app
+        run : |
           python3 main.py
       -
         name: Move version.json to cache directory
