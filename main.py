@@ -53,7 +53,7 @@ versionDetails = fetchLatestVersionDetails()
 
 if versionDetails == None:
     exit(1)
-print(versionDetails)
+print("Checked", versionDetails)
 
 # Check if version.json exists and dump it if it doesn't, then exit
 if os.path.isfile("./version.json") == False:
@@ -67,7 +67,7 @@ storedVersion = None
 with open('./version.json') as f:
     storedVersion = json.load(f)
 
-print(storedVersion)
+print("Cached:", storedVersion)
 
 if storedVersion == None:
     print("Stored json file error")
@@ -78,6 +78,8 @@ if storedVersion[0] != versionDetails[0] and storedVersion[1] != versionDetails[
     different = True
 else:
     print("Did not find new version")
+
+print("Different:", different)
 
 # Check compare results, then notify if needed
 if different:
