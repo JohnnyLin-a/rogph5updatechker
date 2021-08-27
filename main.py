@@ -67,6 +67,8 @@ storedVersion = None
 with open('./version.json') as f:
     storedVersion = json.load(f)
 
+print(storedVersion)
+
 if storedVersion == None:
     print("Stored json file error")
     exit(1)
