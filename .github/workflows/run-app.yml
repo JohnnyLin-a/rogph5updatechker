@@ -25,9 +25,7 @@ jobs:
         uses: actions/cache@v2
         with:
           path: /tmp/.app-cache
-          key: ${{ runner.os }}-rogph5updatechker-${{ github.sha }}
-          restore-keys: |
-            ${{ runner.os }}-rogph5updatechker-
+          key: ${{ runner.os }}-rogph5updatechker
       -
         name: Move cache to repo directory
         continue-on-error: true
