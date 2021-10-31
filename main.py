@@ -15,7 +15,7 @@ def fetchLatestVersionDetails():
     options.headless = True
     driver = webdriver.Firefox(options=options, executable_path="/usr/bin/geckodriver")
 
-    driver.get("https://rog.asus.com/ca-en/phones/rog-phone-5-model/helpdesk_bios")
+    driver.get("https://rog.asus.com/us/phones/rog-phone-5-model/helpdesk_bios")
     
     try:
         WebDriverWait(driver, 20).until(EC.presence_of_element_located((By.CLASS_NAME, "productSupportDriverBIOSBox")))
