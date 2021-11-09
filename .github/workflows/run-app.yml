@@ -24,13 +24,13 @@ jobs:
         name: Cache version.json
         uses: actions/cache@v2
         with:
-          path: /tmp/.app-cache
+          path: ~/app-cache
           key: ${{ runner.os }}-rogph5updatechker
       -
         name: Move cache to repo directory
         continue-on-error: true
         run: |
-          cp /tmp/.app-cache/version.json ./
+          cp ~/app-cache/version.json ./
       -
         name: Install pre-requisites
         run : |
@@ -42,5 +42,5 @@ jobs:
       -
         name: Move version.json to cache directory
         run: |
-          mkdir -p /tmp/.app-cache/ && cp ./version.json /tmp/.app-cache/
+          mkdir -p ~/app-cache/ && cp ./version.json ~/app-cache/
           rm version.json
