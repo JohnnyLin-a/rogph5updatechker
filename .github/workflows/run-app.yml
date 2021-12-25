@@ -32,6 +32,12 @@ jobs:
         run : |
           pip3 install -r requirements.txt
       -
+        name: Check cache
+        continue-on-error: true
+        run : |
+          ls version
+          cat version/version.json
+      -
         name: Execute app
         run : |
           python3 main.py
