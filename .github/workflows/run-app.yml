@@ -26,6 +26,7 @@ jobs:
         with:
           path: ./version
           key: ${{ runner.os }}-rogph5updatechker
+          restore-keys: ${{ runner.os }}-rogph5updatechker
       -
         name: Install pre-requisites
         run : |
