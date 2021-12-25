@@ -57,7 +57,7 @@ print("Checked", versionDetails)
 
 # Check if version.json exists and dump it if it doesn't, then exit
 if os.path.isfile("./version/version.json") == False:
-    with open('version.json', 'w') as f:
+    with open('./version/version.json', 'w') as f:
         print("Dump 1st json file")
         json.dump(versionDetails, f, ensure_ascii=False, indent=4)
         exit(0)
@@ -88,7 +88,7 @@ if different:
     if success:
         print("Writing new version to file.")
         os.remove("./version/version.json")
-        with open('version.json', 'w') as f:
+        with open('./version/version.json', 'w') as f:
             print("Dumping...")
             json.dump(versionDetails, f, ensure_ascii=False, indent=4)
 
