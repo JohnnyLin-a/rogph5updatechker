@@ -25,8 +25,8 @@ jobs:
         uses: actions/cache@v2
         with:
           path: ./version
-          key: ${{ runner.os }}-rogph5updatechker
-          restore-keys: ${{ runner.os }}-rogph5updatechker
+          key: ${{ runner.os }}-rogph5updatechker-${{ github.sha }}
+          restore-keys: ${{ runner.os }}-rogph5updatechker-
       -
         name: Install pre-requisites
         run : |
