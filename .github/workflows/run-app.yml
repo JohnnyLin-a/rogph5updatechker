@@ -35,6 +35,7 @@ jobs:
         name: Check cache
         continue-on-error: true
         run : |
+          mkdir -p version
           ls version
           cat version/version.json
       -
