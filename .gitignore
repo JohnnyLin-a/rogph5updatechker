@@ -4,3 +4,4 @@ chromedriver
 geckodriver.log
 version.json
 .env
+version/*
