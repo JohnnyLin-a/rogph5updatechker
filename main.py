@@ -13,13 +13,13 @@ def fetchLatestVersionDetails():
     retValue = None
     options = Options()
     options.headless = True
-    driver = webdriver.Firefox(options=options, executable_path="/usr/bin/geckodriver")
+    driver = webdriver.Firefox(options=options)
 
     driver.get("https://rog.asus.com/us/phones/rog-phone-5-model/helpdesk_bios")
     
     try:
         WebDriverWait(driver, 20).until(EC.presence_of_element_located((By.CLASS_NAME, "productSupportDriverBIOSBox")))
-        versionEntries = driver.find_elements_by_class_name("productSupportDriverBIOSBox")
+        versionEntries = driver.find_elements(By.CLASS_NAME, "productSupportDriverBIOSBox")
         versionDetails = versionEntries[0].text.split("\n")
         retValue = [versionDetails[0].strip(), versionDetails[1].split(" ")[0].strip()]
     except TimeoutException:
