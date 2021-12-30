@@ -23,6 +23,7 @@ jobs:
       -
         name: Get version.json
         uses: actions/download-artifact@v2
+        continue-on-error: true
         with:
           name: rogph5updatechker
       -
