@@ -32,6 +32,7 @@ jobs:
       -
         name: Execute app
         run : |
+          ls -R
           mkdir -p ./version
           python3 main.py
       -
