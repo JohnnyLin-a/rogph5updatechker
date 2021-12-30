@@ -26,6 +26,7 @@ jobs:
         continue-on-error: true
         with:
           name: rogph5updatechker
+          path: ./version
       -
         name: Install pre-requisites
         run : |
