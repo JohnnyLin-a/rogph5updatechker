@@ -22,10 +22,8 @@ jobs:
           ref: master
       -
         name: Get version.json
-        continue-on-error: true
         uses: actions/download-artifact@v2
         with:
-          path: ./version
           name: rogph5updatechker
       -
         name: Install pre-requisites
