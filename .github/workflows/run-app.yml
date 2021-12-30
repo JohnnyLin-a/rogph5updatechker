@@ -21,25 +21,24 @@ jobs:
         with:
           ref: master
       -
-        name: Get version.json
-        uses: actions/download-artifact@v2
-        continue-on-error: true
+        name: Cache version.json
+        uses: actions/cache@v2
         with:
           path: ./version
+          key: ${{ runner.os }}-rogph5updatechker-${{ github.run_number }}
+          restore-keys: ${{ runner.os }}-rogph5updatechker-
       -
         name: Install pre-requisites
         run : |
           pip3 install -r requirements.txt
       -
+        name: Check cache
+        continue-on-error: true
+        run : |
+          mkdir -p version
+          ls version
+          cat version/version.json
+      -
         name: Execute app
         run : |
-          ls -R
-          mkdir -p ./version
           python3 main.py
-      -
-        name: Save version.json
-        if: always()
-        uses: actions/upload-artifact@v2
-        with:
-          name: rogph5updatechker
-          path: ./version
