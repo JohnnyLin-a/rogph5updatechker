@@ -67,7 +67,7 @@ if storedVersion == None:
     print("Stored json file error")
     exit(1)
 different = False
-if storedVersion[0] != versionDetails[0] and storedVersion[1] != versionDetails[1] and versionDetails[0].lower().startswith("version ww"):
+if storedVersion[0] != versionDetails[0] and storedVersion[1] != versionDetails[1]:
     print("New version detected")
     different = True
 else:
