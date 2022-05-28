@@ -7,7 +7,7 @@ on:
 
 jobs:
   run-app:
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     env:
       DISCORD_USERID: ${{ secrets.DISCORD_USERID }}
       DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
