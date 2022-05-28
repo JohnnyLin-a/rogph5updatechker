@@ -1,9 +1,3 @@
-from selenium import webdriver
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
-from selenium.common.exceptions import TimeoutException
-from selenium.webdriver.firefox.options import Options
 import os
 import json
 from dotenv import load_dotenv
@@ -11,21 +5,21 @@ import requests
 
 def fetchLatestVersionDetails():
     retValue = None
-    options = Options()
-    options.headless = True
-    driver = webdriver.Firefox(options=options)
 
-    driver.get("https://rog.asus.com/us/phones/rog-phone-5-model/helpdesk_bios")
-    
-    try:
-        WebDriverWait(driver, 20).until(EC.presence_of_element_located((By.CLASS_NAME, "productSupportDriverBIOSBox")))
-        versionEntries = driver.find_elements(By.CLASS_NAME, "productSupportDriverBIOSBox")
-        versionDetails = versionEntries[0].text.split("\n")
-        retValue = [versionDetails[0].strip(), versionDetails[1].split(" ")[0].strip()]
-    except TimeoutException:
-        print("Waiting too long and aborted")
-    finally:
-        driver.quit()
+    reqURL = "https://rog.asus.com/support/webapi/product/GetPDBIOS?website=ca-en&model=ROG-Phone-5&pdid=15527&cpu=&LevelTagId=120421&systemCode=rog"
+    headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/102.0.5005.63 Safari/537.36'}
+    getReq = requests.get(reqURL, headers=headers)
+    if not (getReq.status_code >= 200 and getReq.status_code < 300):
+        print("HTTP status code not successful", getReq.status_code)
+        return None
+
+    response = getReq.json()
+
+    for versionObj in response['Result']['Obj'][0]['Files']:
+        if not versionObj['Version'].startswith('WW'):
+            continue
+        return [ 'Version ' + versionObj['Version'], versionObj['ReleaseDate']]
+
     return retValue
 
 def notifyDiscord(versionDetails):
