@@ -19,7 +19,7 @@ jobs:
           ref: master
       -
         name: Cache version.json
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: ./version
           key: ${{ runner.os }}-rogph5updatechker-${{ github.run_number }}
