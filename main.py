@@ -6,7 +6,7 @@ import requests
 def fetchLatestVersionDetails():
     retValue = None
 
-    reqURL = "https://rog.asus.com/support/webapi/product/GetPDBIOS?website=ca-en&model=ROG-Phone-5&pdid=15527&cpu=&LevelTagId=120421&systemCode=rog"
+    reqURL = "https://rog.asus.com/support/webapi/product/GetPDBIOS?website=global&model=rog-phone-5&pdid=0&m1id=15527&cpu=&LevelTagId=197187&systemCode=rog"
     headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/102.0.5005.63 Safari/537.36'}
     getReq = requests.get(reqURL, headers=headers)
     if not (getReq.status_code >= 200 and getReq.status_code < 300):
